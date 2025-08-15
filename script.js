@@ -602,3 +602,323 @@ const debouncedScrollHandler = debounce(function() {
 }, 100);
 
 window.addEventListener('scroll', debouncedScrollHandler);
+
+// 포트폴리오 상세 데이터
+const portfolioData = {
+    living1: {
+        title: "모던 거실 리모델링",
+        images: [
+            "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1560184897-ae75f418493e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 강남구",
+        size: "32평",
+        duration: "3주",
+        budget: "2,800만원",
+        description: "기존의 답답했던 거실을 개방감 있는 모던한 공간으로 완전히 탈바꿈시킨 프로젝트입니다. 천장을 높이고 대형 창문을 활용하여 자연광이 풍부하게 들어오도록 설계했으며, 미니멀한 가구와 중성톤 컬러로 세련된 분위기를 연출했습니다.",
+        features: [
+            "천장 높이 확장으로 개방감 극대화",
+            "대형 슬라이딩 도어로 베란다와 연결",
+            "숨겨진 LED 조명으로 간접조명 연출",
+            "맞춤 제작 TV 벽면 및 수납공간",
+            "바닥난방 시스템 전면 교체"
+        ],
+        materials: [
+            { name: "바닥재", brand: "독일산 프리미엄 LVT" },
+            { name: "벽지", brand: "이태리 수입 벽지" },
+            { name: "조명", brand: "필립스 스마트 LED" },
+            { name: "가구", brand: "맞춤 제작 원목가구" }
+        ],
+        rating: 5,
+        review: "기대했던 것보다 훨씬 더 멋진 공간이 되었어요. 특히 조명 디자인이 정말 예술적이고, 가족들이 모두 만족해합니다. 시공 기간도 약속을 잘 지켜주셨고, 깔끔하게 마무리해주셔서 감사합니다.",
+        author: "김○○님 (강남구)"
+    },
+    
+    kitchen1: {
+        title: "럭셔리 주방 인테리어",
+        images: [
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 서초구",
+        size: "주방 12평",
+        duration: "4주",
+        budget: "4,200만원",
+        description: "요리를 사랑하는 고객을 위해 기능성과 미학을 완벽하게 조화시킨 럭셔리 주방입니다. 프리미엄 가전제품과 인조대리석 상판, 맞춤 제작 수납장으로 최고급 주방을 완성했습니다.",
+        features: [
+            "아일랜드형 주방으로 공간 활용 극대화",
+            "독일산 프리미엄 가전제품 설치",
+            "인조대리석 일체형 상판 시공",
+            "LED 라인조명으로 작업공간 밝기 확보",
+            "팬트리 공간 별도 설계"
+        ],
+        materials: [
+            { name: "상판", brand: "듀폰 코리안 인조대리석" },
+            { name: "싱크대", brand: "독일 BLANCO" },
+            { name: "가전", brand: "밀레(Miele) 빌트인" },
+            { name: "수납장", brand: "맞춤 제작 우드" }
+        ],
+        rating: 5,
+        review: "요리하는 것이 이렇게 즐거울 줄 몰랐어요! 동선도 완벽하고 수납공간도 충분해서 정말 만족스럽습니다. 친구들이 와서 모두 부러워해요.",
+        author: "박○○님 (서초구)"
+    },
+    
+    bedroom1: {
+        title: "모던 침실 인테리어",
+        images: [
+            "images/bedroom.jpeg",
+            "https://images.unsplash.com/photo-1571508601495-98ba5f622dbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "경기도 분당구",
+        size: "침실 10평",
+        duration: "2주",
+        budget: "1,800만원",
+        description: "현재 시공 중인 모던 침실 프로젝트입니다. 따뜻한 우드톤과 세련된 조명으로 편안하면서도 고급스러운 휴식 공간을 만들어가고 있습니다. 트랙 조명과 펜던트 조명의 조화로 다양한 분위기 연출이 가능합니다.",
+        features: [
+            "트랙 조명 시스템으로 분위기 조절",
+            "맞춤 제작 헤드보드 및 수납공간",
+            "우드 포인트 벽면 시공",
+            "블랙아웃 커튼으로 완벽한 차광",
+            "바닥 간접조명 설치"
+        ],
+        materials: [
+            { name: "바닥재", brand: "천연 오크 원목" },
+            { name: "벽면", brand: "친환경 수성페인트" },
+            { name: "조명", brand: "북유럽 디자인 조명" },
+            { name: "가구", brand: "이태리 수입 침구" }
+        ],
+        rating: 5,
+        review: "아직 시공 중이지만 벌써부터 너무 만족스러워요. 조명 디자인이 정말 예술 같고, 세심한 부분까지 신경써주셔서 감사합니다.",
+        author: "이○○님 (분당구)"
+    },
+    
+    bathroom1: {
+        title: "스파 같은 욕실",
+        images: [
+            "https://images.unsplash.com/photo-1571508601655-26ba9d4aec0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 용산구",
+        size: "욕실 5평",
+        duration: "3주",
+        budget: "3,500만원",
+        description: "호텔 스파를 연상시키는 럭셔리 욕실로 리모델링했습니다. 대리석 패턴의 타일과 레인샤워, 욕조가 조화를 이루어 매일 스파에 온 듯한 느낌을 선사합니다.",
+        features: [
+            "대형 레인샤워 시스템 설치",
+            "독립형 욕조로 휴식공간 연출",
+            "대리석 패턴 포셀린 타일 시공",
+            "스마트 거울 및 조명 시스템",
+            "바닥 및 거울 열선 설치"
+        ],
+        materials: [
+            { name: "타일", brand: "이태리 포셀린 타일" },
+            { name: "욕조", brand: "독일 Kaldewei" },
+            { name: "샤워기", brand: "한스그로에 레인샤워" },
+            { name: "조명", brand: "방수 LED 조명" }
+        ],
+        rating: 5,
+        review: "정말 집에서 스파를 즐기는 기분이에요. 욕조에서 바라보는 뷰도 좋고, 샤워할 때 기분이 너무 좋아져요. 최고의 선택이었습니다!",
+        author: "최○○님 (용산구)"
+    },
+    
+    office1: {
+        title: "모던 오피스 공간",
+        images: [
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 강남구",
+        size: "사무실 25평",
+        duration: "2주",
+        budget: "2,200만원",
+        description: "효율적이고 세련된 업무 환경을 위한 모던 오피스 인테리어입니다. 개방형 구조와 스마트 조명, ergonomic 가구로 직원들의 업무 효율성과 만족도를 높였습니다.",
+        features: [
+            "개방형 업무공간 설계",
+            "회의실 유리 파티션 설치",
+            "스마트 조명 제어 시스템",
+            "에르고노믹 업무용 가구",
+            "브랜드 컬러 포인트 디자인"
+        ],
+        materials: [
+            { name: "바닥재", brand: "상업용 LVT 타일" },
+            { name: "파티션", brand: "강화유리 시스템" },
+            { name: "가구", brand: "Herman Miller" },
+            { name: "조명", brand: "Philips 스마트 LED" }
+        ],
+        rating: 5,
+        review: "직원들 모두 새로운 사무실을 정말 좋아해요. 업무 효율도 높아지고 분위기도 밝아졌습니다. 클라이언트들도 사무실을 보고 깜짝 놀라요.",
+        author: "김○○님 (IT회사 대표)"
+    },
+    
+    bedroom2: {
+        title: "프리미엄 침실 조명 시공",
+        images: [
+            "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 마포구",
+        size: "침실 12평",
+        duration: "10일",
+        budget: "1,200만원",
+        description: "트랙 조명과 펜던트 조명을 활용한 프리미엄 침실 조명 시공 프로젝트입니다. 다양한 상황에 맞는 조명 연출로 침실의 분위기를 극대화했습니다.",
+        features: [
+            "트랙 조명으로 spotlight 연출",
+            "베드사이드 펜던트 조명",
+            "디밍 기능으로 밝기 조절",
+            "간접조명으로 부드러운 분위기",
+            "스마트 스위치 시스템"
+        ],
+        materials: [
+            { name: "트랙조명", brand: "독일 SLV 브랜드" },
+            { name: "펜던트", brand: "북유럽 디자인" },
+            { name: "LED전구", brand: "Philips Hue" },
+            { name: "스위치", brand: "정전식 터치스위치" }
+        ],
+        rating: 5,
+        review: "조명만 바꿨는데 완전히 다른 공간이 된 것 같아요. 책 읽을 때, 잠들 때 등 상황에 맞게 조명을 조절할 수 있어서 너무 만족해요.",
+        author: "정○○님 (마포구)"
+    },
+    
+    living2: {
+        title: "클래식 거실 디자인",
+        images: [
+            "https://images.unsplash.com/photo-1560184897-ae75f418493e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ],
+        location: "서울시 송파구",
+        size: "거실 28평",
+        duration: "4주",
+        budget: "3,800만원",
+        description: "클래식의 우아함을 현대적으로 재해석한 고급스러운 거실 공간입니다. 고급 원목 가구와 앤틱 소품, 샹들리에가 어우러져 품격 있는 공간을 연출했습니다.",
+        features: [
+            "클래식 몰딩 천장 시공",
+            "원목 맞춤 가구 제작",
+            "크리스탈 샹들리에 설치",
+            "페르시안 러그 및 커튼 코디",
+            "벽난로 스타일 포인트 벽면"
+        ],
+        materials: [
+            { name: "가구", brand: "유럽산 원목 앤틱" },
+            { name: "조명", brand: "크리스탈 샹들리에" },
+            { name: "러그", brand: "페르시안 핸드메이드" },
+            { name: "커튼", brand: "실크 블렌드 원단" }
+        ],
+        rating: 5,
+        review: "정말 궁전에 온 것 같은 기분이에요. 클래식한 느낌을 원했는데 과하지 않게 세련되게 해주셔서 감사합니다. 손님들이 오면 모두 감탄해요.",
+        author: "윤○○님 (송파구)"
+    }
+};
+
+// 포트폴리오 모달 열기
+function openPortfolioModal(projectId) {
+    const project = portfolioData[projectId];
+    if (!project) return;
+    
+    const modal = document.getElementById('portfolioModal');
+    
+    // 모달 내용 업데이트
+    document.getElementById('modalTitle').textContent = project.title;
+    document.getElementById('modalMainImage').src = project.images[0];
+    document.getElementById('modalLocation').textContent = project.location;
+    document.getElementById('modalSize').textContent = project.size;
+    document.getElementById('modalDuration').textContent = project.duration;
+    document.getElementById('modalBudget').textContent = project.budget;
+    document.getElementById('modalDescription').textContent = project.description;
+    
+    // 썸네일 이미지 생성
+    const thumbnailContainer = document.getElementById('modalThumbnails');
+    thumbnailContainer.innerHTML = '';
+    project.images.forEach((image, index) => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = image;
+        thumbnail.className = 'thumbnail';
+        if (index === 0) thumbnail.classList.add('active');
+        thumbnail.onclick = () => changeMainImage(image, thumbnail);
+        thumbnailContainer.appendChild(thumbnail);
+    });
+    
+    // 특징 목록 생성
+    const featuresList = document.getElementById('modalFeatures');
+    featuresList.innerHTML = '';
+    project.features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        featuresList.appendChild(li);
+    });
+    
+    // 자재 정보 생성
+    const materialsGrid = document.getElementById('modalMaterials');
+    materialsGrid.innerHTML = '';
+    project.materials.forEach(material => {
+        const materialDiv = document.createElement('div');
+        materialDiv.className = 'material-item';
+        materialDiv.innerHTML = `
+            <div class="material-name">${material.name}</div>
+            <div class="material-brand">${material.brand}</div>
+        `;
+        materialsGrid.appendChild(materialDiv);
+    });
+    
+    // 별점 생성
+    const ratingContainer = document.getElementById('modalRating');
+    ratingContainer.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.className = 'star';
+        star.innerHTML = i < project.rating ? '★' : '☆';
+        ratingContainer.appendChild(star);
+    }
+    
+    document.getElementById('modalReview').textContent = project.review;
+    document.getElementById('modalAuthor').textContent = project.author;
+    
+    // 모달 표시
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // 스크롤 방지
+}
+
+// 포트폴리오 모달 닫기
+function closePortfolioModal() {
+    const modal = document.getElementById('portfolioModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // 스크롤 복원
+}
+
+// 메인 이미지 변경
+function changeMainImage(src, thumbnail) {
+    document.getElementById('modalMainImage').src = src;
+    
+    // 썸네일 active 상태 변경
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+    thumbnail.classList.add('active');
+}
+
+// 견적 문의로 스크롤
+function scrollToContact() {
+    closePortfolioModal();
+    
+    setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = contactSection.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }, 300);
+}
+
+// 모달 외부 클릭 시 닫기
+window.onclick = function(event) {
+    const modal = document.getElementById('portfolioModal');
+    if (event.target === modal) {
+        closePortfolioModal();
+    }
+}
+
+// ESC 키로 모달 닫기
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closePortfolioModal();
+    }
+});

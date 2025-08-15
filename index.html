@@ -160,60 +160,81 @@
                 <button class="filter-btn" data-filter="office">사무실</button>
             </div>
             <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="living">
+                <div class="portfolio-item" data-category="living" onclick="openPortfolioModal('living1')">
                     <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="모던 거실 인테리어">
                     <div class="portfolio-overlay">
                         <h3>모던 거실 리모델링</h3>
                         <p>깔끔하고 세련된 모던 스타일 거실</p>
                         <span class="category">거실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="kitchen">
+                <div class="portfolio-item" data-category="kitchen" onclick="openPortfolioModal('kitchen1')">
                     <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="주방 인테리어">
                     <div class="portfolio-overlay">
                         <h3>럭셔리 주방 인테리어</h3>
                         <p>기능성과 미학을 겸비한 주방 공간</p>
                         <span class="category">주방</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="bedroom">
+                <div class="portfolio-item" data-category="bedroom" onclick="openPortfolioModal('bedroom1')">
                     <img src="images/bedroom.jpeg" alt="침실 인테리어 시공 현장">
                     <div class="portfolio-overlay">
                         <h3>모던 침실 인테리어</h3>
                         <p>따뜻한 조명과 세련된 마감재로 완성한 편안한 침실 공간</p>
                         <span class="category">침실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="bathroom">
+                <div class="portfolio-item" data-category="bathroom" onclick="openPortfolioModal('bathroom1')">
                     <img src="https://images.unsplash.com/photo-1571508601655-26ba9d4aec0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="욕실 인테리어">
                     <div class="portfolio-overlay">
                         <h3>스파 같은 욕실</h3>
                         <p>호텔급 고급 욕실 인테리어</p>
                         <span class="category">욕실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="office">
+                <div class="portfolio-item" data-category="office" onclick="openPortfolioModal('office1')">
                     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="사무실 인테리어">
                     <div class="portfolio-overlay">
                         <h3>모던 오피스 공간</h3>
                         <p>효율적이고 세련된 업무 환경</p>
                         <span class="category">사무실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="bedroom">
+                <div class="portfolio-item" data-category="bedroom" onclick="openPortfolioModal('bedroom2')">
                     <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="침실 조명 인테리어">
                     <div class="portfolio-overlay">
                         <h3>프리미엄 침실 조명 시공</h3>
                         <p>트랙 조명과 펜던트 조명으로 완성한 고급 침실</p>
                         <span class="category">침실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="living">
+                <div class="portfolio-item" data-category="living" onclick="openPortfolioModal('living2')">
                     <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="거실 인테리어">
                     <div class="portfolio-overlay">
                         <h3>클래식 거실 디자인</h3>
                         <p>고급스러운 클래식 스타일</p>
                         <span class="category">거실</span>
+                        <div class="view-details">
+                            <i class="fas fa-eye"></i> 자세히 보기
+                        </div>
                     </div>
                 </div>
             </div>
@@ -432,6 +453,87 @@
             </div>
         </div>
     </footer>
+
+    <!-- 포트폴리오 상세 모달 -->
+    <div id="portfolioModal" class="portfolio-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">시공 사례 상세</h2>
+                <span class="modal-close" onclick="closePortfolioModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-gallery">
+                    <img id="modalMainImage" src="" alt="시공 사례">
+                    <div class="image-thumbnails" id="modalThumbnails">
+                        <!-- 썸네일 이미지들이 동적으로 추가됩니다 -->
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="project-info">
+                        <h3>프로젝트 개요</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>위치:</label>
+                                <span id="modalLocation">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>규모:</label>
+                                <span id="modalSize">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>공사기간:</label>
+                                <span id="modalDuration">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>예산:</label>
+                                <span id="modalBudget">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-description">
+                        <h3>시공 내용</h3>
+                        <p id="modalDescription">-</p>
+                    </div>
+                    
+                    <div class="project-features">
+                        <h3>주요 특징</h3>
+                        <ul id="modalFeatures">
+                            <!-- 특징들이 동적으로 추가됩니다 -->
+                        </ul>
+                    </div>
+                    
+                    <div class="project-materials">
+                        <h3>사용 자재</h3>
+                        <div class="materials-grid" id="modalMaterials">
+                            <!-- 자재 정보가 동적으로 추가됩니다 -->
+                        </div>
+                    </div>
+                    
+                    <div class="client-review">
+                        <h3>고객 후기</h3>
+                        <div class="review-content">
+                            <div class="review-rating" id="modalRating">
+                                <!-- 별점이 동적으로 추가됩니다 -->
+                            </div>
+                            <p id="modalReview">-</p>
+                            <div class="review-author" id="modalAuthor">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="scrollToContact()">
+                    <i class="fas fa-calculator"></i>
+                    비슷한 견적 요청하기
+                </button>
+                <button class="btn-secondary" onclick="closePortfolioModal()">
+                    <i class="fas fa-times"></i>
+                    닫기
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- EmailJS 라이브러리 -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

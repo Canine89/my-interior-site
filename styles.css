@@ -293,6 +293,328 @@ body {
     font-size: 1rem;
 }
 
+/* 포트폴리오 상세보기 버튼 */
+.view-details {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+.portfolio-item:hover .view-details {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-item {
+    cursor: pointer;
+}
+
+/* 포트폴리오 모달 */
+.portfolio-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-white);
+    margin: 2% auto;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-hover);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(135deg, var(--primary-color), #34495e);
+    color: white;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    color: white;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.modal-image-gallery {
+    position: sticky;
+    top: 0;
+}
+
+.modal-image-gallery img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.image-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    opacity: 1;
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.modal-details {
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.modal-details h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.modal-details > div {
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+.info-item label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.info-item span {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.project-description p {
+    line-height: 1.8;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.project-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.project-features li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--secondary-color);
+    transition: var(--transition);
+}
+
+.project-features li:hover {
+    background: #e8f4fd;
+    transform: translateX(5px);
+}
+
+.project-features li::before {
+    content: '✓';
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.material-item {
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.material-item:hover {
+    background: #e8f4fd;
+    transform: translateY(-2px);
+}
+
+.material-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.material-brand {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.review-content {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--gold-color);
+}
+
+.review-rating {
+    margin-bottom: 1rem;
+}
+
+.review-rating .star {
+    color: var(--gold-color);
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+}
+
+.review-content p {
+    font-style: italic;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.review-author {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: right;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e9ecef;
+    background: var(--bg-light);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.modal-footer button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 모달 반응형 */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .materials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* 공통 섹션 스타일 */
 section {
     padding: 5rem 0;
