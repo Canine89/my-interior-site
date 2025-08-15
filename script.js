@@ -126,7 +126,7 @@ function initializeContactForm() {
 const EMAILJS_CONFIG = {
     publicKey: 'AgrxmQcyLlQD4L_LO', // Account > General에서 확인한 Public Key
     serviceId: 'service_2svsbgs', // 확인된 Service ID  
-    templateId: 'template_efn785s' // 생성된 Template ID
+    templateId: 'template_tgpcymp' // 올바른 Template ID
 };
 
 // EmailJS 초기화
