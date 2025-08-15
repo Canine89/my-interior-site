@@ -193,7 +193,22 @@ async function handleFormSubmit(e) {
         
     } catch (error) {
         console.error('EmailJS 전송 오류:', error);
-        showNotification('전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+        
+        // 템플릿 ID 오류인 경우 구체적인 안내
+        if (error.text && error.text.includes('template ID not found')) {
+            showNotification('템플릿 설정을 확인해주세요. 관리자에게 문의하시면 빠르게 해결해드리겠습니다.', 'warning');
+            
+            // 관리자용 정보 콘솔 출력
+            console.log('템플릿 ID 확인 필요:', EMAILJS_CONFIG.templateId);
+            console.log('고객 정보:', {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                space_type: formData.get('space-type'),
+                message: formData.get('message')
+            });
+        } else {
+            showNotification('전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+        }
     } finally {
         form.classList.remove('loading');
         submitButton.innerHTML = originalText;
