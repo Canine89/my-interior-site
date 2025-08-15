@@ -14,6 +14,7 @@ function initializeApp() {
     initializeScrollAnimations();
     initializeSmoothScroll();
     initializeHeaderScroll();
+    initializeEmailJS();
 }
 
 // 네비게이션 초기화
@@ -121,8 +122,22 @@ function initializeContactForm() {
     }
 }
 
+// EmailJS 초기화 (여기에 실제 키를 입력하세요)
+const EMAILJS_CONFIG = {
+    publicKey: 'YOUR_PUBLIC_KEY', // EmailJS에서 발급받은 Public Key
+    serviceId: 'YOUR_SERVICE_ID', // EmailJS Service ID
+    templateId: 'YOUR_TEMPLATE_ID' // EmailJS Template ID
+};
+
+// EmailJS 초기화
+function initializeEmailJS() {
+    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+    }
+}
+
 // 폼 제출 처리
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
     e.preventDefault();
     
     const form = e.target;
@@ -140,14 +155,31 @@ function handleFormSubmit(e) {
     const originalText = submitButton.innerHTML;
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 전송 중...';
     
-    // 실제 환경에서는 서버로 데이터 전송
-    // 현재는 시뮬레이션
-    setTimeout(() => {
-        form.classList.remove('loading');
-        submitButton.innerHTML = originalText;
-        
-        showNotification('견적 요청이 성공적으로 전송되었습니다. 24시간 내에 연락드리겠습니다.', 'success');
-        form.reset();
+    try {
+        // EmailJS로 이메일 전송
+        if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+            const templateParams = {
+                customer_name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email') || '미입력',
+                space_type: formData.get('space-type'),
+                size: formData.get('size') || '미입력',
+                budget: formData.get('budget') || '미입력',
+                timeline: formData.get('timeline') || '미입력',
+                message: formData.get('message') || '없음',
+                submit_time: new Date().toLocaleString('ko-KR')
+            };
+            
+            await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams);
+            
+            showNotification('견적 요청이 성공적으로 전송되었습니다. 24시간 내에 연락드리겠습니다.', 'success');
+            form.reset();
+        } else {
+            // EmailJS가 설정되지 않은 경우 시뮬레이션
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showNotification('견적 요청이 접수되었습니다. EmailJS 설정을 완료하면 실제 전송됩니다.', 'success');
+            form.reset();
+        }
         
         // Google Analytics 이벤트 추적 (선택사항)
         if (typeof gtag !== 'undefined') {
@@ -155,7 +187,14 @@ function handleFormSubmit(e) {
                 'form_name': 'consultation_request'
             });
         }
-    }, 2000);
+        
+    } catch (error) {
+        console.error('EmailJS 전송 오류:', error);
+        showNotification('전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+    } finally {
+        form.classList.remove('loading');
+        submitButton.innerHTML = originalText;
+    }
 }
 
 // 폼 유효성 검사
