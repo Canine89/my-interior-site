@@ -122,11 +122,11 @@ function initializeContactForm() {
     }
 }
 
-// EmailJS 초기화 (실제 키로 설정 완료)
+// EmailJS 초기화 (모든 설정 완료!)
 const EMAILJS_CONFIG = {
     publicKey: 'AgrxmQcyLlQD4L_LO', // Account > General에서 확인한 Public Key
-    serviceId: 'service_2svsbgs', // 확인된 Service ID
-    templateId: 'YOUR_TEMPLATE_ID' // 템플릿 생성 후 입력 필요
+    serviceId: 'service_2svsbgs', // 확인된 Service ID  
+    templateId: 'template_efn785s' // 생성된 Template ID
 };
 
 // EmailJS 초기화
@@ -171,12 +171,7 @@ async function handleFormSubmit(e) {
                 to_email: 'hgpark@goldenrabbit.co.kr' // 수신 이메일 주소
             };
             
-            // 템플릿 ID가 설정되어 있지 않으면 임시 알림
-            if (EMAILJS_CONFIG.templateId === 'YOUR_TEMPLATE_ID') {
-                console.log('템플릿 생성 후 Template ID를 입력해주세요:', templateParams);
-                showNotification('EmailJS 설정을 완료해주세요. 콘솔에서 데이터를 확인할 수 있습니다.', 'warning');
-                return;
-            }
+            // EmailJS 전송 준비 완료!
             
             await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams);
             
